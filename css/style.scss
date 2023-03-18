@@ -30,6 +30,8 @@ ul {
   color: #a6accd;
   width: 100vw;
   height: 100vh;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 $vscode_dark: #1c1e2b;
@@ -37,6 +39,9 @@ $red: rgba(231, 0, 231, 0.05);
 $green: rgba(0, 231, 231, 0.05);
 $blue: rgba(0, 0, 231, 0.05);
 
+$left: 40%;
+$center: 20%;
+$right: 40%;
 @mixin header_item($color, $jc) {
   display: flex;
   justify-content: $jc;
@@ -47,6 +52,7 @@ $blue: rgba(0, 0, 231, 0.05);
   display: flex;
   justify-content: space-between;
   width: 100%;
+  height: 2rem;
   padding: 0;
   margin: 0 auto;
   font-size: 14px;
@@ -61,44 +67,87 @@ $blue: rgba(0, 0, 231, 0.05);
     li {
       display: flex;
     }
+    width: $left;
   }
   div:nth-child(2) {
     @include header_item($green, center);
+    width: $center;
   }
   div:nth-child(3) {
     @include header_item($blue, flex-end);
+    width: $right;
     padding-right: 20px;
     li {
       margin-left: 20px;
     }
   }
 }
+
+@media all and (max-width: 1250px) {
+  .header ul .left {
+    visibility: hidden;
+    max-width: 10%;
+  }
+  .center {
+    min-width: 50%;
+  }
+}
+
 .sidebar {
   font-size: 20px;
   height: calc(100vh - 33px);
-  width: 3%;
+  min-width: 3%;
   background-color: $vscode_dark;
+  float: left;
   ul {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
     border-right: 1px solid rgb(0, 0, 29);
+    font-size: 1.5rem;
   }
   div:nth-child(1) {
-    background-color: $green;
+    padding-top: 10%;
+    // background-color: $green;
   }
   div:nth-child(2) {
-    background-color: $red;
+    // background-color: $red;
+    padding-bottom: 10%;
   }
   li {
     list-style: none;
     padding: 10px;
+    display: flex;
+    justify-content: center;
   }
+}
+.stage {
+  float: left;
+  width: calc(100% - 3%);
+  height: calc(100% - 2rem);
+  position: relative;
 }
 
 #rabbit {
-  width: 100px;
-  height: 100px;
-  background-image: url();
+  width: 200px;
+  height: 200px;
+  background-image: url(../public/rabbit.png);
+  background-size: cover;
+  position: absolute;
+  left: 100px;
+  top: 100px;
+  bottom: 100px;
+  right: 100px;
+}
+#cat {
+  width: 200px;
+  height: 200px;
+  background-image: url(../public/cat.png);
+  background-size: cover;
+  position: absolute;
+  left: 200px;
+  top: 200px;
+  bottom: 200px;
+  right: 200px;
 }

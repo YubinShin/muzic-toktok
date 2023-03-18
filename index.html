@@ -12,25 +12,26 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <style></style>
     <title>Document</title>
   </head>
   <body>
     <div class="background-container">
       <div class="header">
         <ul>
-          <div class="w-40">
+          <div class="left">
             <li>L</li>
             <li>파일(F)</li>
-            <li>편집()</li>
-            <li>선택 영역()</li>
-            <li>보기()</li>
-            <li>이동()</li>
-            <li>실행()</li>
-            <li>터미널()</li>
+            <li>편집(E)</li>
+            <li>선택 영역(S)</li>
+            <li>보기(V)</li>
+            <li>이동(G)</li>
+            <li>실행(R)</li>
+            <li>터미널(T)</li>
             <li>...</li>
           </div>
-          <div class="w-20"><li>index.html - Visual Studio Code</li></div>
-          <div class="w-40">
+          <div class="center"><li>index.html - Visual Studio Code</li></div>
+          <div class="right">
             <li>-</li>
             <li>ㅁ</li>
             <li>x</li>
@@ -54,7 +55,72 @@
       </div>
       <div class="stage">
         <div id="rabbit"></div>
+        <div id="cat"></div>
       </div>
     </div>
+    <script>
+      window.addEventListener("keydown", moveSomething, false);
+      const rabbit = document.getElementById("rabbit");
+      const cat = document.getElementById("cat");
+      let xValue =
+        parseInt(getComputedStyle(rabbit).getPropertyValue("left")) || 0;
+      let yValue =
+        parseInt(getComputedStyle(rabbit).getPropertyValue("top")) || 0;
+      let x고양이 =
+        parseInt(getComputedStyle(cat).getPropertyValue("left")) || 0;
+      let y고양이 =
+        parseInt(getComputedStyle(cat).getPropertyValue("top")) || 0;
+
+      let movePX = 30;
+
+      function moveSomething(e) {
+        switch (e.keyCode) {
+          case 37: // left arrow key pressed
+            console.log("왼쪽 눌림");
+            xValue -= movePX;
+            rabbit.style.left = `${xValue}px`;
+            console.log(xValue);
+            break;
+          case 38: // up arrow key pressed
+            console.log("위쪽 눌림");
+            yValue -= movePX;
+            rabbit.style.top = `${yValue}px`;
+            console.log(yValue);
+            break;
+          case 39: // right arrow key pressed
+            console.log("오른쪽 눌림");
+            xValue += movePX;
+            rabbit.style.left = `${xValue}px`;
+            console.log(xValue);
+            break;
+          case 40: // down arrow key pressed
+            console.log("아래쪽 눌림");
+            yValue += movePX;
+            rabbit.style.top = `${yValue}px`;
+            console.log(yValue);
+            break;
+          case 65:
+            // 'a' key pressed
+            x고양이 -= movePX;
+            cat.style.left = `${x고양이}px`;
+            break;
+          case 87:
+            // 'w' key pressed
+            y고양이 -= movePX;
+            cat.style.top = `${y고양이}px`;
+            break;
+          case 68:
+            // 'd' key pressed
+            x고양이 += movePX;
+            cat.style.left = `${x고양이}px`;
+            break;
+          case 83:
+            // 's' key pressed
+            y고양이 += movePX;
+            cat.style.top = `${y고양이}px`;
+            break;
+        }
+      }
+    </script>
   </body>
 </html>
